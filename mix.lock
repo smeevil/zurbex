@@ -1,2 +1,4 @@
-%{"gettext": {:hex, :gettext, "0.13.1", "5e0daf4e7636d771c4c71ad5f3f53ba09a9ae5c250e1ab9c42ba9edccc476263", [:mix], []},
+%{"exfswatch": {:hex, :exfswatch, "0.3.1", "ce80d2801e3befd362f9acb8ac08eb63bec9a79dc4444dcde46bc239382be2ca", [:mix], [{:fs, "~> 2.12", [hex: :fs, optional: false]}]},
+  "fs": {:hex, :fs, "2.12.0", "ad631efacc9a5683c8eaa1b274e24fa64a1b8eb30747e9595b93bec7e492e25e", [:rebar3], []},
+  "gettext": {:hex, :gettext, "0.13.1", "5e0daf4e7636d771c4c71ad5f3f53ba09a9ae5c250e1ab9c42ba9edccc476263", [:mix], []},
   "slime": {:hex, :slime, "0.16.0", "4f9c677ca37b2817cd10422ecb42c524fe904d3630acf242b81dfe189900272a", [:mix], []}}

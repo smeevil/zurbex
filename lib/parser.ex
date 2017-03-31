@@ -6,6 +6,12 @@ defmodule Zurbex.Parser do
     |> File.read!
     |> Slime.render      
   end
+
+  def slim_file_to_html(file) do
+    file
+    |> File.read!
+    |> Slime.render      
+  end
   
   def render_partial(template_path) do
     slim_to_html("source/partials/" <> template_path)    
@@ -13,8 +19,8 @@ defmodule Zurbex.Parser do
   
   def html_to_eex(html_source) do     
     html_source 
-    |> String.replace("<elixir>", "<%=")
-    |> String.replace("</elixir>", "%>")    
+    |> String.replace(~r[<eex\s?.*?\>], "<%=")
+    |> String.replace("</eex>", "%>")    
   end
   
   def eex_to_ast(source, assigns \\ []) do
