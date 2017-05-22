@@ -46,7 +46,7 @@ defmodule Zurbex.Precompile do
       IO.puts "  * #{template_name}"
       quote do
         @file unquote(file)
-        @spec render(Atom.t, List.t)
+        @spec render(Atom.t, List.t) :: binary
         def render(unquote(template_name), var!(assigns)) do
          {string, _} = Code.eval_quoted(unquote(eex), var!(assigns))
          string
