@@ -1,4 +1,7 @@
 defmodule Zurbex.Precompile do
+  @moduledoc """
+  This module will parse the zurb source templates, extract eex, and convert the templates to render functions
+  """
 
   defmacro __using__(options) do
     quote do
@@ -71,12 +74,14 @@ Known templates:
     {external_resources, {functions, helpers}}
   end
 
+  @spec template_relative_path(String.t, String.t) :: String.t
   defp template_relative_path(path, root) do
     path
     |> Path.rootname()
     |> Path.relative_to(root)
   end
 
+  @spec relative_to_function_name(String.t) :: Atom.t
   defp relative_to_function_name(relative) do
     relative
     |> String.replace("/", "_")

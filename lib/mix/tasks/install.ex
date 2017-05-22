@@ -12,23 +12,27 @@ defmodule Mix.Tasks.Zurbex.Install do
   def template_root, do: Application.get_env(:zurbex, :email_template_dir, File.cwd!)
   def zurb_root, do: Application.get_env(:zurbex, :foundation_source_dir, File.cwd!)
 
+  @spec run(List.t) :: :ok | {:error, String.t}
   def run(_args) do
     case Zurbex.check_source_directories() do
       :ok -> install()
-      {:error, message} -> IO.puts message
+      {:error, message} -> IO.puts(message)
     end
+    :ok
   end
 
+  @spec install :: :ok
   def install do
     src = zurb_root() <> "/src"
     dest = template_root()
 
     case File.lstat(src) do
-      {:ok, %{type: :symlink}} -> IO.puts "already installed"
+      {:ok, %{type: :symlink}} -> {:error, "already installed"}
       _ ->
         File.cp_r!(src, dest)
         File.rm_rf!(src)
         File.ln_s(dest, src)
+        :ok
     end
   end
 end

@@ -1,7 +1,15 @@
 defmodule Zurbex do
+  @moduledoc """
+  This module takes care of the base setup and validation of configs
+  """
+
+  @spec get_email_source_dir :: String.t
   def get_email_source_dir, do: Application.get_env(:zurbex, :email_source_dir, File.cwd!)
+
+  @spec get_foundation_source_dir :: String.t
   def get_foundation_source_dir, do: Application.get_env(:zurbex, :foundation_source_dir, File.cwd!)
 
+  @spec check_source_directories :: :ok | {:error, String.t}
   def check_source_directories do
     with \
       :ok <- validate(:foundation_source, File.exists?(get_foundation_source_dir())),
@@ -13,6 +21,7 @@ defmodule Zurbex do
     end
   end
 
+  @spec validate(Atom.t, Boolean.t) :: :ok | {:error, String.t}
   def validate(_, true), do: :ok
   def validate(:foundation_source, false) do
     {:error,
@@ -24,7 +33,6 @@ If you would like to change the source directory, you can set this in your confi
 If you don't have foundation yet, you can install it with `npm install --global foundation-cli`
     ]}
   end
-
   def validate(:template_source, false) do
     {:error, ~s[
 The foundation email template directory #{get_email_source_dir()} does not exist.
