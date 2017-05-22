@@ -46,6 +46,7 @@ defmodule Zurbex.Precompile do
       IO.puts "  * #{template_name}"
       quote do
         @file unquote(file)
+        @spec render(Atom.t, List.t)
         def render(unquote(template_name), var!(assigns)) do
          {string, _} = Code.eval_quoted(unquote(eex), var!(assigns))
          string
@@ -69,6 +70,7 @@ Known templates:
 #{Enum.map(templates(), fn template -> ":#{template} \n" end)}]
       end
 
+      @spec templates :: [Atom.t]
       def templates, do: unquote(templates)
     end
     {external_resources, {functions, helpers}}
