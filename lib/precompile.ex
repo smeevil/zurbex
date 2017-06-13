@@ -24,7 +24,8 @@ defmodule Zurbex.Precompile do
 
   defp build_zurb_mail do
     IO.puts("Precompiling mail templates")
-    System.cmd("/usr/bin/env", ["node", "./gulp.js", "build", "--production"], cd: Zurbex.get_foundation_source_dir() <> "/node_modules/gulp-cli/bin/")
+    System.cmd("/usr/bin/env", ["yarn", "install"], cd: Zurbex.get_foundation_source_dir())
+    System.cmd("/usr/bin/env", ["node", "./node_modules/gulp-cli/bin/gulp.js", "build", "--production"], cd: Zurbex.get_foundation_source_dir())
   end
 
   def convert_zurb_mail_to_functions do
