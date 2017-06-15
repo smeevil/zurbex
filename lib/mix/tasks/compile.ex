@@ -16,7 +16,7 @@ defmodule Mix.Tasks.Zurbex.Compile do
 
   @spec compile :: :ok
   def compile do
-    IO.puts("Precompiling mail templates")
+    IO.puts("Precompiling mail templates, this might take a while...")
     System.cmd("/usr/bin/env", ["node", "./node_modules/gulp-cli/bin/gulp.js", "build", "--production"], cd: Zurbex.get_foundation_source_dir())
     File.mkdir_p(File.cwd! <> "/priv/zurbex/")
     Zurbex.get_foundation_source_dir() <> "/dist/"
