@@ -12,12 +12,7 @@ defmodule Zurbex.Precompile do
 
   defmacro __before_compile__(_env) do
     require EEx
-
-    case Zurbex.check_source_directories() do
-      {:error, message} -> raise message
-      _ -> nil
-    end
-
+    unless File.exists?(File.cwd! <> "/priv/zurbex"), do: raise("Directory #{File.cwd! <> "/priv/zurbex"} does not exists. did you run mix zurbex.precompile before?")
     convert_zurb_mail_to_functions()
   end
 
