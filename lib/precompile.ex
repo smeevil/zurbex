@@ -7,6 +7,7 @@ defmodule Zurbex.Precompile do
     quote do
       @before_compile unquote(__MODULE__)
       import unquote(options[:gettext])
+      use Phoenix.HTML
     end
   end
 
@@ -33,8 +34,8 @@ defmodule Zurbex.Precompile do
       relative = template_relative_path(file, File.cwd! <> "/priv/zurbex")
       template_name = relative_to_function_name(relative)
 
-
       IO.puts "  * #{template_name}"
+
       quote do
         @file unquote(file)
         @spec render(Atom.t, List.t) :: binary

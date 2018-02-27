@@ -26,8 +26,10 @@ defmodule Zurbex.Parser do
   @spec html_to_eex(String.t) :: String.t
   def html_to_eex(html_source) do
     html_source
-    |> String.replace(~r[<eex\s?.*?\>], "<%=")
-    |> String.replace("</eex>", "%>")
+    |> String.replace("<eex>end</eex>", "<% end %>")
+    |> String.replace(~r[<eex\s?.*?\>], "<%= ")
+    |> String.replace("</eex>", " %>")
+    |> IO.inspect(label: "template")
   end
 
   @spec eex_to_ast(String.t, List.t) :: String.t
