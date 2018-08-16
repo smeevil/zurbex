@@ -32,7 +32,7 @@ defmodule Zurbex.Parser do
     |> IO.inspect(label: "template")
   end
 
-  @spec eex_to_ast(String.t, List.t) :: String.t
+  @spec eex_to_ast(String.t, list) :: String.t
   def eex_to_ast(source, assigns \\ []) do
     EEx.compile_string(source, assigns)
   end

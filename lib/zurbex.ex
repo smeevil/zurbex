@@ -21,7 +21,7 @@ defmodule Zurbex do
     end
   end
 
-  @spec validate(Atom.t, Boolean.t) :: :ok | {:error, String.t}
+  @spec validate(atom, boolean) :: :ok | {:error, String.t}
   def validate(_, true), do: :ok
   def validate(:foundation_source, false) do
     {:error,

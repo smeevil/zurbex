@@ -38,7 +38,7 @@ defmodule Zurbex.Precompile do
 
       quote do
         @file unquote(file)
-        @spec render(Atom.t, List.t) :: binary
+        @spec render(atom, list) :: binary
         def render(unquote(template_name), var!(assigns)) do
          {string, _} = Code.eval_quoted(unquote(eex), var!(assigns))
          string
@@ -62,7 +62,7 @@ Known templates:
 #{Enum.map(templates(), fn template -> ":#{template} \n" end)}]
       end
 
-      @spec templates :: [Atom.t]
+      @spec templates :: [atom]
       def templates, do: unquote(templates)
     end
     {external_resources, {functions, helpers}}
@@ -75,7 +75,7 @@ Known templates:
     |> Path.relative_to(root)
   end
 
-  @spec relative_to_function_name(String.t) :: Atom.t
+  @spec relative_to_function_name(String.t) :: atom
   defp relative_to_function_name(relative) do
     relative
     |> String.replace("/", "_")

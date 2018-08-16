@@ -12,7 +12,7 @@ defmodule Mix.Tasks.Zurbex.Install do
   def template_root, do: Application.get_env(:zurbex, :email_template_dir, File.cwd!)
   def zurb_root, do: Application.get_env(:zurbex, :foundation_source_dir, File.cwd!)
 
-  @spec run(List.t) :: :ok | {:error, String.t}
+  @spec run(list) :: :ok | {:error, String.t}
   def run(_args) do
     case Zurbex.check_source_directories() do
       :ok -> install()
