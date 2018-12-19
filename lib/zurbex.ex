@@ -9,6 +9,9 @@ defmodule Zurbex do
   @spec get_foundation_source_dir :: String.t
   def get_foundation_source_dir, do: Application.get_env(:zurbex, :foundation_source_dir, File.cwd!)
 
+  @spec get_compiled_dir :: String.t
+  def get_compiled_dir, do: Application.get_env(:zurbex, :compiled_dir, File.cwd!)
+
   @spec check_source_directories :: :ok | {:error, String.t}
   def check_source_directories do
     with \
